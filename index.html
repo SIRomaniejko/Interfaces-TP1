@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+    <nav id="navbar">
+        <button id="js-ej2button">Color solido</button>
+        <button id="js-gradienteButton">Gradiente</button>
+        <button>Ejercicio 4</button>
+        <button>Ejercicio 5</button>
+    </nav>
+    <div id="js-ej2" class="hidden ejercicio">
+        <form>
+            <div class="flexbox js-color">
+                <div class="slidecontainer">
+                    <label for="r">Red</label>
+                    <input type="range" min="0" max="255" value="0" class="slider" name="r">
+                </div>
+                <div class="slidecontainer">
+                    <label for="g">Green</label>
+                    <input type="range" min="0" max="255" value="0" class="slider" name="g">
+                </div>
+                <div class="slidecontainer">
+                    <label for="b">Blue</label>
+                    <input type="range" min="0" max="255" value="0" class="slider" name="b">
+                </div>
+            </div>
+            <div class="flexbox js-coords">
+                <input type="number" name="w" value="100" min="1" max="700">
+                <input type="number" name="h" value="100" min="1" max="400">
+                <button type="button">crear</button>
+            </div>
+        </form>
+    </div>
+    <div id="js-gradiente" class="hidden ejercicio">
+        <form>
+            <div class="flexbox js-color">
+                <div class="slidecontainer">
+                    <label for="r">Red</label>
+                    <input type="range" min="0" max="255" value="0" class="slider" name="r">
+                </div>
+                <div class="slidecontainer">
+                    <label for="g">Green</label>
+                    <input type="range" min="0" max="255" value="0" class="slider" name="g">
+                </div>
+                <div class="slidecontainer">
+                    <label for="b">Blue</label>
+                    <input type="range" min="0" max="255" value="0" class="slider" name="b">
+                </div>
+            </div>
+            <div class="flexbox js-color">
+                <div class="slidecontainer">
+                    <label for="r">Red</label>
+                    <input type="range" min="0" max="255" value="0" class="slider" name="r">
+                </div>
+                <div class="slidecontainer">
+                    <label for="g">Green</label>
+                    <input type="range" min="0" max="255" value="0" class="slider" name="g">
+                </div>
+                <div class="slidecontainer">
+                    <label for="b">Blue</label>
+                    <input type="range" min="0" max="255" value="0" class="slider" name="b">
+                </div>
+            </div>
+            <div class="flexbox js-coords">
+                <div>
+                    <label for="inicio">inicio</label>
+                    <input class="js-inicio-fin" type="number" name="inicio" value="0" min="0" max="699">
+                </div>
+                <div>
+                    <label for="fin">fin</label>
+                    <input class="js-inicio-fin" type="number" name="fin" value="699" min="0" max="699">
+                </div>
+                <div>
+                    <label for="esVertical">vertical</label>
+                    <input id="js-checkbox" type="checkbox" name="esVerical" value="false">
+
+                </div>
+                <button type="button">crear</button>
+                <button type="button" id="js-limpiar-gradiente">limpiar</button>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <canvas width="700px" height="400px" id="js-canvas">
+
+        </canvas>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

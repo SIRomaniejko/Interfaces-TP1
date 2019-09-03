@@ -69,6 +69,16 @@ function setPixel(imageData, x, y, R, G, B, A){
     imageData.data[index + 3] = A;
 }
 
+function getPixel(imageData, x, y){
+    let index = (y * imageData.width + x) * 4;
+    return {    r: imageData.data[index],
+                g: imageData.data[index + 1],
+                b: imageData.data[index + 2],
+                a: imageData.data[index + 3]
+
+    };
+}
+
 function putImage(img){
 
     if(img.width <= width && img.height <= height){
@@ -217,6 +227,80 @@ document.querySelector("#js-limpiar-gradiente").addEventListener("click", ()=>{
     colorSolido(imgGradiente, color)
     putImage(imgGradiente);
 })
+
+//imagen filtro
+
+document.querySelector("#js-filtroButton").addEventListener("click", ()=>{
+    document.querySelector("#js-filtro").classList.toggle("hidden");
+})
+
+
+
+document.querySelector("#js-filtro").querySelector("input").addEventListener("change", event=>{
+    let file = document.querySelector('input[type=file]').files[0];
+    console.log(file);
+    let reader = new FileReader();
+    if(file){
+        reader.readAsDataURL(file);
+    }
+    reader.onloadend = function(){
+        let img = new Image();
+        img.src = reader.result;
+        img.onload = function(){
+            myDrawImage(img);
+            
+            /*console.log(img.width);
+            console.log(img.height);
+            canvas.drawImage(img, 0, 0, width, height);
+            console.log("drawn image?");*/
+        }
+    }
+})
+
+function filtroGris(img){
+    for(let yi = 0; yi < img.height; yi++){
+        for(let xi = 0; xi < img.width; xi++){
+            let pixel = getPixel(img, xi, yi);
+            let gris = Math.floor((pixel.r + pixel.g + pixel.b) / 3);
+            setPixel(img, xi, yi, gris, gris, gris, 255);
+        }
+    }
+    putImage(img);
+}
+
+function myDrawImage(img){
+    console.log(width - img.width);
+    console.log(height - img.height);
+    let alto = img.height;
+    let ancho = img.width;
+    if(img.width <= width && img.height <= height){
+        console.log("purrfect");
+        canvas.drawImage(img, 0, 0);
+    }
+    else if((width - img.width) <= (height - img.height)){
+        console.log("muy ancha");
+        alto = width * img.height / img.width; 
+        ancho = width;
+    }
+    else{
+        console.log("muy alta");
+        ancho = height * img.width / img.height;
+        alto = height;
+    }
+    canvas.drawImage(img, 0, 0, ancho, height);
+
+
+    document.querySelector("#js-filtro").querySelector("button").addEventListener("click", ()=>{
+        let imageDataSubido = canvas.getImageData(0, 0, ancho, alto);
+        console.log(ancho);
+        console.log(alto);
+        filtroGris(imageDataSubido);
+    })
+}
+
+
+  
+
 /* codigo viejo
 
 var imagen = new Image();

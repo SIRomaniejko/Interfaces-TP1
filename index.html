@@ -11,8 +11,7 @@
     <nav id="navbar">
         <button id="js-ej2button">Color solido</button>
         <button id="js-gradienteButton">Gradiente</button>
-        <button>Ejercicio 4</button>
-        <button>Ejercicio 5</button>
+        <button id="js-filtroButton">Filtro Imagen</button>
     </nav>
     <div id="js-ej2" class="hidden ejercicio">
         <form>
@@ -83,6 +82,16 @@
                 </div>
                 <button type="button">crear</button>
                 <button type="button" id="js-limpiar-gradiente">limpiar</button>
+            </div>
+        </form>
+    </div>
+    <div id="js-filtro" class="hidden ejercicio">
+        <form>
+            <div class="flexbox js-color">
+                <div class="slidecontainer">
+                    <input type="file" name="imagen">
+                    <button type="button">aplicar filtro</button>
+                </div>
             </div>
         </form>
     </div>

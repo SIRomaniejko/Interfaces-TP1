@@ -71,3 +71,17 @@ canvas{
     justify-content: space-around;
     align-items: center;
 }
+
+h4{
+    width: fit-content;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width:480px){
+    .container{
+        background-color: black;
+    }
+    .flexbox{
+        flex-direction: column;
+    }
+}

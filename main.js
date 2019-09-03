@@ -294,6 +294,17 @@ function myDrawImage(img){
 }
 
 
+//mejoras visuales:
+document.querySelectorAll(".js-color").forEach(selectorColores =>{
+    let color = selectorColores.querySelectorAll("input");
+    let mostrador = selectorColores.querySelectorAll("p");
+    for(let y = 0; y < color.length; y++){
+        color[y].addEventListener("input", ()=>{
+            mostrador[y].innerHTML = Math.floor(color[y].value);
+        })
+    }
+})
+
   
 
 /* codigo viejo

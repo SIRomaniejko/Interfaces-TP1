@@ -228,6 +228,8 @@ document.querySelector("#js-limpiar-gradiente").addEventListener("click", ()=>{
     putImage(imgGradiente);
 })
 
+
+
 //imagen filtro
 
 document.querySelector("#js-filtroButton").addEventListener("click", ()=>{
@@ -248,11 +250,6 @@ document.querySelector("#js-filtro").querySelector("input").addEventListener("ch
         img.src = reader.result;
         img.onload = function(){
             myDrawImage(img);
-            
-            /*console.log(img.width);
-            console.log(img.height);
-            canvas.drawImage(img, 0, 0, width, height);
-            console.log("drawn image?");*/
         }
     }
 })
@@ -279,21 +276,19 @@ function myDrawImage(img){
     }
     else if((width - img.width) <= (height - img.height)){
         console.log("muy ancha");
-        alto = width * img.height / img.width; 
+        alto = Math.ceil(width * img.height / img.width); 
         ancho = width;
     }
     else{
         console.log("muy alta");
-        ancho = height * img.width / img.height;
+        ancho = Math.floor(height * img.width / img.height);
         alto = height;
     }
-    canvas.drawImage(img, 0, 0, ancho, height);
+    canvas.drawImage(img, 0, 0, ancho, alto);
 
 
     document.querySelector("#js-filtro").querySelector("button").addEventListener("click", ()=>{
         let imageDataSubido = canvas.getImageData(0, 0, ancho, alto);
-        console.log(ancho);
-        console.log(alto);
         filtroGris(imageDataSubido);
     })
 }

@@ -9,9 +9,9 @@
 </head>
 <body>
     <nav id="navbar">
-        <button id="js-ej2button">Color solido</button>
-        <button id="js-gradienteButton">Gradiente</button>
-        <button id="js-filtroButton">Filtro Imagen</button>
+        <button class="js-limpiar js-navButton" id="js-ej2button">Color solido</button>
+        <button class="js-limpiar js-navButton" id="js-gradienteButton">Gradiente</button>
+        <button class="js-limpiar js-navButton" id="js-filtroButton">Filtro Imagen</button>
     </nav>
     <div id="js-ej2" class="hidden ejercicio">
         <form>
@@ -19,17 +19,17 @@
                 <div class="slidecontainer">
                     <label for="r">Red</label>
                     <input type="range" min="0" max="255" value="0" class="slider" name="r">
-                    <p class="js-valueBox">0</p>
+                    <input type="number" min="0" max="255" value="0" class="js-valueBox">
                 </div>
                 <div class="slidecontainer">
                     <label for="g">Green</label>
                     <input type="range" min="0" max="255" value="0" class="slider" name="g">
-                    <p class="js-valueBox">0</p>
+                    <input type="number" min="0" max="255" value="0" class="js-valueBox">
                 </div>
                 <div class="slidecontainer">
                     <label for="b">Blue</label>
                     <input type="range" min="0" max="255" value="0" class="slider" name="b">
-                    <p class="js-valueBox">0</p>
+                    <input type="number" min="0" max="255" value="0" class="js-valueBox">
                 </div>
             </div>
             <div class="flexbox js-coords">
@@ -47,17 +47,17 @@
                     <div class="slidecontainer">
                         <label for="r">Red</label>
                         <input type="range" min="0" max="255" value="0" class="slider" name="r">
-                        <p class="js-valueBox">0</p>
+                        <input type="number" min="0" max="255" value="0" class="js-valueBox">
                     </div>
                     <div class="slidecontainer">
                         <label for="g">Green</label>
                         <input type="range" min="0" max="255" value="0" class="slider" name="g">
-                        <p class="js-valueBox">0</p>
+                        <input type="number" min="0" max="255" value="0" class="js-valueBox">
                     </div>
                     <div class="slidecontainer">
                         <label for="b">Blue</label>
                         <input type="range" min="0" max="255" value="0" class="slider" name="b">
-                        <p class="js-valueBox">0</p>
+                        <input type="number" min="0" max="255" value="0" class="js-valueBox">
                     </div>
                 </div>
             </div>
@@ -67,17 +67,17 @@
                     <div class="slidecontainer">
                         <label for="r">Red</label>
                         <input type="range" min="0" max="255" value="0" class="slider" name="r">
-                        <p class="js-valueBox">0</p>
+                        <input type="number" min="0" max="255" value="0" class="js-valueBox">
                     </div>
                     <div class="slidecontainer">
                         <label for="g">Green</label>
                         <input type="range" min="0" max="255" value="0" class="slider" name="g">
-                        <p class="js-valueBox">0</p>
+                        <input type="number" min="0" max="255" value="0" class="js-valueBox">
                     </div>
                     <div class="slidecontainer">
                         <label for="b">Blue</label>
                         <input type="range" min="0" max="255" value="0" class="slider" name="b">
-                        <p class="js-valueBox">0</p>
+                        <input type="number" min="0" max="255" value="0" class="js-valueBox">
                     </div>
                 </div>
             </div>
@@ -92,11 +92,19 @@
                 </div>
                 <div>
                     <label for="esVertical">vertical</label>
-                    <input id="js-checkbox" type="checkbox" name="esVerical" value="false">
+                    <input id="js-checkbox" type="checkbox" name="esVertical" value="false">
 
                 </div>
                 <button type="button">crear</button>
-                <button type="button" id="js-limpiar-gradiente">limpiar</button>
+                <button type="button" class="js-limpiar">limpiar</button>
+            </div>
+            <div class="flexbox js-auto">
+                <button type="button" id="js-ejercicio4Auto">preparar ejercicio 3</button>
+                <div class="flexbox">
+                    <button type="button" id="js-ejercicio5-1Auto">primer mitad ejercicio 4</button>
+                    <button type="button" id="js-ejercicio5-2Auto">segunda mitad ejercicio 4</button>  
+
+                </div>
             </div>
         </form>
     </div>

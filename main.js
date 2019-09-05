@@ -94,11 +94,81 @@ function putImage(img){
     }
 }
 
+
+
+document.querySelectorAll(".js-navButton").forEach(button=>{
+    button.addEventListener("click", ()=>{
+        document.querySelectorAll(".ejercicio").forEach(divEjercicio =>{
+            if(!divEjercicio.classList.contains("hidden")){
+                divEjercicio.classList.add("hidden");
+            }
+        })
+    })
+})
+
+//ejercicio 1
+let mat = [];
+for(let y = 0; y < 100; y++){
+    let xD = [];
+    mat[y] = xD;
+    for(let x = 0; x < 100; x++){
+        mat[y][x] = Math.floor(Math.random() * 100 + 1);
+    }
+}
+console.table(mat);
+console.log("ejercicio 1A");
+console.log(getMax(mat));
+
+function getMax(matriz){
+    let max = null
+    matriz.forEach(row=>{
+        row.forEach(cell=>{
+            if(max == null || cell > max){
+                max = cell;
+            }
+        })
+    })
+    return max;
+}
+console.log("ejercicio 1B");
+console.log(getMaxMin(mat));
+function getMaxMin(matriz){
+    let max;
+    let min;
+    for(let y = 0; y < matriz.length; y++){
+        for(let x = 0; x < matriz[y].length; x++){
+            if(y % 2 == 0 && (max == null || matriz[y][x] > max)){
+                max = matriz[y][x];
+            }
+            else if(y % 2 != 0 && (min == null || matriz[y][x] < min)){
+                min = matriz[y][x];
+            }
+        }
+    }
+    return {    max: max,
+                min: min};
+}
+
+let promedio = promedioFila(mat);
+console.log("ejercicio 1C")
+console.log(promedio);
+function promedioFila(matriz){
+    let resultado = {};
+    for(let y = 0; y < matriz.length; y++){
+        let total = 0;
+        for(let x = 0; x < matriz[y].length; x++){
+            total += matriz[y][x];
+        }
+        resultado[y] = total/matriz[y].length;
+    }
+    return resultado;
+}
+
+//ejercicio 2
 document.querySelector("#js-ej2button").addEventListener("click", ()=>{
     document.querySelector("#js-ej2").classList.toggle("hidden");
 })
 
-//ejercicio 2
 let imgEjercicio2 = {
                         r: 0,
                         g: 0,
@@ -219,14 +289,19 @@ document.querySelector("#js-gradiente").querySelector("button").addEventListener
     putImage(imgGradiente);
 
 })
-document.querySelector("#js-limpiar-gradiente").addEventListener("click", ()=>{
+document.querySelectorAll(".js-limpiar").forEach(botonLimpiar =>{
+    botonLimpiar.addEventListener("click", clear);
+});
+
+function clear(){
+    console.log("cleanBro");
     let color = {   r: 255,
-                    g: 255,
-                    b: 255
+        g: 255,
+        b: 255
     };
     colorSolido(imgGradiente, color)
     putImage(imgGradiente);
-})
+}
 
 
 
@@ -239,6 +314,7 @@ document.querySelector("#js-filtroButton").addEventListener("click", ()=>{
 
 
 document.querySelector("#js-filtro").querySelector("input").addEventListener("change", event=>{
+    clear();
     let file = document.querySelector('input[type=file]').files[0];
     console.log(file);
     let reader = new FileReader();
@@ -296,16 +372,90 @@ function myDrawImage(img){
 
 //mejoras visuales:
 document.querySelectorAll(".js-color").forEach(selectorColores =>{
-    let color = selectorColores.querySelectorAll("input");
-    let mostrador = selectorColores.querySelectorAll("p");
+    let color = selectorColores.querySelectorAll(".slider");
+    let mostrador = selectorColores.querySelectorAll(".js-valueBox");
     for(let y = 0; y < color.length; y++){
         color[y].addEventListener("input", ()=>{
-            mostrador[y].innerHTML = Math.floor(color[y].value);
+            mostrador[y].value = Math.floor(color[y].value);
+            console.log("slide");
+        })
+        mostrador[y].addEventListener("change", ()=>{
+            color[y].value = mostrador[y].value;
+            console.log("number");
+            console.log(mostrador[y].value);
         })
     }
 })
 
-  
+
+//automatic ejercicio
+document.querySelector("#js-ejercicio4Auto").addEventListener("click", ()=>{
+    let color1 = {  r: 0,
+                    g: 0,
+                    b: 0
+    }
+    let color2 = {  r: 255,
+                    g: 255,
+                    b: 255}
+    cargaAutomatica(color1, color2, 0, 399, true);
+})
+document.querySelector("#js-ejercicio5-1Auto").addEventListener("click", ()=>{
+    let color1 = {  r: 0,
+                    g: 0,
+                    b: 0
+    }
+    let color2 = {  r: 255,
+                    g: 255,
+                    b: 0}
+    cargaAutomatica(color1, color2, 0, 349, false);
+})
+document.querySelector("#js-ejercicio5-2Auto").addEventListener("click", ()=>{
+    let color1 = {  r: 255,
+                    g: 255,
+                 b: 0};
+    let color2 = {  r: 255,
+                    g: 0,
+                    b: 0}
+    cargaAutomatica(color1, color2, 349, 699, false);
+})
+
+function cargaAutomatica(color1, color2, inicioCarga, finCarga, esVertical){
+    let gradiente = document.querySelector("#js-gradiente")
+    let slidesColor = gradiente.querySelectorAll(".js-color");
+    for(let y = 0; y < slidesColor.length; y++){
+        let colorElegido = color2;
+        if(y == 0){
+            colorElegido = color1;
+        }
+        slidesColor[y].querySelectorAll(".slidecontainer").forEach(slideContainer=>{
+            let slide = slideContainer.querySelector(".slider");
+            switch(slide.getAttribute("name")){
+                case "r":
+                    slide.value = colorElegido.r;
+                    break;
+                case "g":
+                    slide.value = colorElegido.g;
+                    break;
+                case "b":
+                    slide.value = colorElegido.b;
+            }
+            slideContainer.querySelector(".js-valueBox").value = slide.value;
+        })
+    }
+    gradiente.querySelector(".js-coords").querySelectorAll("input").forEach(atributo=>{
+        console.log(atributo);
+        switch(atributo.getAttribute("name")){
+            case "inicio":
+                atributo.value = inicioCarga;
+                break;
+            case "fin":
+                atributo.value = finCarga;
+                break;
+            case "esVertical":
+                atributo.checked = esVertical;
+        }
+    })
+}
 
 /* codigo viejo
 
